@@ -164,13 +164,16 @@ def viewResults(media, interval):
     img_dmap = hv.DynamicMap(image)
 
     # html head: app_bar
+    pn.extension(raw_css=[
+        ".white-text { color: white; }",
+        ".black-background { background-color: black; }"
+    ])
+
     app_bar = pn.Row(
-        pn.pane.Markdown("## {} 매체 - {} 단위 모형 결과".format(media, text4title), style={"color": "white"}, 
-                        width=1000, height=40, sizing_mode="fixed", margin=(5,5,5,5)), 
-        # pn.pane.Markdown("## {} Simulation Results - {}".format(text4title, media), style={"color": "white"}, 
-        #                width=1000, height=40, sizing_mode="fixed", margin=(5,5,5,5)), 
-        # pn.Spacer(),
-        background="black",
+        pn.pane.Markdown("## {} 매체 - {} 단위 모형 결과".format(media, text4title),
+                         css_classes=["white-text"],
+                         width=1000, height=40, sizing_mode="fixed", margin=(5, 5, 5, 5)),
+        css_classes=["black-background"]
     )
 
     # stopping server button event

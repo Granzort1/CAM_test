@@ -116,13 +116,23 @@ def viewResults(media, interval):
 
     get_image(1)
 
-    # html head: app_bar
+    # CSS 스타일 정의
+    style = """
+    .custom-app-bar {
+        background-color: black;
+        color: white;
+        padding: 5px;
+    }
+    """
+
+    # HTML에 CSS 클래스 적용
     app_bar = pn.Row(
-        pn.pane.Markdown("## {} Simulation Results - {}".format(text4title, media), style={"color": "white"}, 
-                        width=1000, height=40, sizing_mode="fixed", margin=(5,5,5,5)), 
-        # pn.Spacer(),
-        background="black",
+        pn.pane.HTML("<h2 class='custom-app-bar'>{} Simulation Results - {}</h2>".format(text4title, media),
+                     width=1000, height=40, sizing_mode="fixed", margin=(0, 0, 0, 0)),
     )
+
+    # 스타일 적용
+    pn.extension(raw_css=[style])
     app_bar
 
     # Define custom widgets
