@@ -102,12 +102,18 @@ def met_data_processing():
         # 기상 data Table 할당
         dTable = "meteo_full" + str(iYear)
         
-        # 2020년을 제외하고 그 이전 연도의 경우, 세종은 '대전시' 측정소로 설정
         if sido =='세종':
-            sigungu = '대전시' if iYear < 2020 else '세종시'
+            sido = '대전'
+            sigungu = '대전시' 
+        
+        # 세종시 오류나는 원 소스 시작
+        # 2020년을 제외하고 그 이전 연도의 경우, 세종은 '대전시' 측정소로 설정
+        # if sido =='세종':
+        #    sigungu = '대전시' if iYear < 2020 else '세종시'
+        # 세종시 오류나는 원 소스 끝
         
         # 연도에 맞는 
-        sql = "SELECT code1 FROM station WHERE sido = '{}' AND sigungu = '{}'".format(sido, sigungu)
+        sql = f"SELECT code1 FROM station WHERE sido = '{sido}' AND sigungu = '{sigungu}'"
         print(sql)
         
         cur.execute(sql)
